@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class OnlineResource extends JsonResource
 {
-
     public function toArray($request)
     {
         // $agent = new Agent;
@@ -17,7 +16,7 @@ class OnlineResource extends JsonResource
             // 'device' => $agent->isMobile ? 'phone' : 'computer',
             'user' => $this->whenLoaded('user', function () {
                 return new OnlineUserResource($this->user);
-            })
+            }),
         ];
     }
 }
