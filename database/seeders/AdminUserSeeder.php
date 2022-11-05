@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class AdminUserSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -14,10 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            RolesSeeder::class,
-            AdminUserSeeder::class,
-            DataSeeder::class
+        \App\Domains\Authorization\Models\User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
         ]);
     }
 }

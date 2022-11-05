@@ -12,7 +12,7 @@ class ChatMessagesQuery extends QueryBuilder
         parent::__construct(
             Chat::query()
                 ->with([
-                    'messages' => fn ($q) => $q->latest()->paginate(),
+                    'messages' => fn ($q) => $q->latest(),
                     'messages.user'
                 ])
                 ->whereId($chatId)

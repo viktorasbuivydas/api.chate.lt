@@ -12,7 +12,7 @@ class OnlineResource extends JsonResource
 
         return [
             // diffForHumans
-            'updated_at' => $this->updated_at->format('H:i:s'),
+            'updated_at' => $this->updated_at->diffForHumans(),
             // 'device' => $agent->isMobile ? 'phone' : 'computer',
             'user' => $this->whenLoaded('user', function () {
                 return new OnlineUserResource($this->user);
