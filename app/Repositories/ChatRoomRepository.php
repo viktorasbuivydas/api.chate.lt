@@ -22,8 +22,7 @@ class ChatRoomRepository extends BaseRepository implements ChatRoomRepositoryInt
     {
         return $this->getModelInstance()
             ->with([
-                'messages' => fn ($q) => $q->latest()
-                    ->paginate(30),
+                'messages' => fn ($q) => $q->latest(),
                 'messages.user',
             ])
             ->whereId($chatId)
