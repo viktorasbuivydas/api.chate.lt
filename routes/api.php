@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::group([], base_path('routes/api/auth.php'));
 
 Route::group([], base_path('routes/api/request.php'));
+Route::group([], base_path('routes/api/code.php'));
 Route::group([], base_path('routes/api/chat.php'));
 Route::group([], base_path('routes/api/user.php'));
 Route::group([], base_path('routes/api/online.php'));
+Route::group([], base_path('routes/api/inbox.php'));

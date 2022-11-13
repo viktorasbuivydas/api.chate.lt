@@ -2,15 +2,29 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Domains\Authorization\Models\User;
-use App\Domains\Authorization\Resources\UserResource;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User\UserResource;
+use App\Services\Interfaces\UserServiceInterface;
 
 class UserController extends Controller
 {
+    protected UserServiceInterface $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function user()
     {
-        $user = User::find(auth()->id());
+        $user = $this->userService->getLoggedInUserData();
+
+        return new UserResource($user);
+    }
+
+    public function getSelectedUsernameUserData(string $username)
+    {
+        $user = $this->userService->getSelectedUsernameUserData($username);
 
         return new UserResource($user);
     }

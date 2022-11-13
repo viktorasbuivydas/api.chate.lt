@@ -13,7 +13,7 @@ class ChatMessagesQuery extends QueryBuilder
             Chat::query()
                 ->with([
                     'messages' => fn ($q) => $q->latest(),
-                    'messages.user'
+                    'messages.user',
                 ])
                 ->whereId($chatId)
         );

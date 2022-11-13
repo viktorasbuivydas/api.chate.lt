@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class AdminUserSeeder extends Seeder
@@ -14,9 +14,11 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Domains\Authorization\Models\User::factory()->create([
-            'name' => 'Admin',
+        $user = User::factory()->create([
+            'username' => 'admin',
             'email' => 'admin@gmail.com',
         ]);
+
+        $user->assignRole('super admin');
     }
 }

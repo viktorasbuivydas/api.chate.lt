@@ -3,6 +3,16 @@
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth:sanctum', 'online']], function () {
-    Route::get('/user', [UserController::class, 'user'])->name('user.current');
-});
+Route::controller(UserController::class)
+    ->as('user.')
+    ->middleware([
+        'auth:sanctum',
+        'online',
+    ])
+    ->group(function () {
+        Route::get('user', 'user')
+            ->name('current');
+
+        Route::get('about/{username}', 'getSelectedUsernameUserData')
+            ->name('about');
+    });

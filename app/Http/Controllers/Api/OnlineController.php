@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Domains\Online\Resources\OnlineResource;
-use App\Domains\Online\Models\Online;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Http\Resources\Online\OnlineResource;
+use App\Services\Interfaces\OnlineServiceInterface;
 
 class OnlineController extends Controller
 {
+    protected OnlineServiceInterface $onlineService;
+
+    public function __construct(
+        OnlineServiceInterface $onlineService
+    ) {
+        $this->onlineService = $onlineService;
+    }
+
     public function index()
     {
         return OnlineResource::collection(
-            Online::with('user')
-                ->where('updated_at', '>', Carbon::now()->subMinutes(10))
-                ->get()
+            $this->onlineService->getOnlineUsers()
         );
     }
 }

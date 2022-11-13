@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RequestController;
+use Illuminate\Support\Facades\Route;
 
-Route::post('/requests/store', [RequestController::class, 'store'])->name('requests.store');
+Route::post('/requests/store', [RequestController::class, 'store'])
+    ->name('requests.store');

@@ -13,6 +13,7 @@ class RolesSeeder extends Seeder
     {
         $this->createRoles();
         $this->createPermissions();
+        $this->assignPermissionToRole();
     }
 
     private function createRoles()
@@ -21,7 +22,7 @@ class RolesSeeder extends Seeder
 
         $userRoles = $roles->map(fn ($role) => [
             'name' => $role,
-            'guard_name' => 'api'
+            'guard_name' => 'web',
         ]);
 
         Role::insert($userRoles->toArray());
@@ -35,7 +36,7 @@ class RolesSeeder extends Seeder
 
         $userPermissions = $permissions->map(fn ($role) => [
             'name' => $role,
-            'guard_name' => 'api'
+            'guard_name' => 'web',
         ]);
 
         Permission::insert($userPermissions->toArray());
@@ -43,5 +44,28 @@ class RolesSeeder extends Seeder
 
     private function assignPermissionToRole()
     {
+        $roles = Role::all();
+
+        $roles->map(function ($role) {
+            $permissions = match ($role->name) {
+                'vip' => ['vip'],
+                'moderator' => ['vip', 'moderator'],
+                'admin' => ['vip', 'moderator', 'admin'],
+                'super admin' => ['vip', 'moderator', 'admin', 'super admin']
+            };
+
+            $role->givePermissionTo(
+                $this->getPermission($permissions)
+            );
+        });
+    }
+
+    private function getPermission(array $roles)
+    {
+        return collect($roles)->map(
+            fn ($role) => collect(
+                Arr::get(config('roles'), $role)
+            )
+        )->flatten();
     }
 }

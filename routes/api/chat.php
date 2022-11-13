@@ -1,14 +1,37 @@
 <?php
 
-use App\Http\Controllers\Api\ChatController;
-use App\Http\Controllers\Api\ChatMessageController;
+use App\Http\Controllers\Api\ChatRoomController;
+use App\Http\Controllers\Api\ChatRoomMessageController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth:sanctum', 'online']], function () {
+Route::controller(ChatRoomController::class)
+    ->as('chat.')
+    ->middleware([
+        'auth:sanctum',
+        'online',
+    ])
+    ->group(function () {
+        Route::get('/chat/index', 'getChatRooms')
+            ->name('get-chat-rooms');
 
-    Route::get('/chat/index', [ChatController::class, 'index'])->name('chat.index');
-    Route::post('/chat/store', [ChatController::class, 'store'])->name('chat.store');
+        //super admin
+        Route::group([
+            'middleware' => 'role:super admin',
+        ], function () {
+            Route::post('/chat/store', 'createChatRoom')
+                ->name('create-chat-room');
+        });
+    });
 
-    Route::get('/chat/{chat}/index', [ChatMessageController::class, 'index'])->name('chat-messages.index');
-    Route::post('/chat/{chat}/store', [ChatMessageController::class, 'store'])->name('chat-messages.store');
-});
+Route::controller(ChatRoomMessageController::class)
+    ->as('chat-messages')
+    ->middleware([
+        'auth:sanctum',
+        'online',
+    ])
+    ->group(function () {
+        Route::get('/chat/{chat}/index', 'getChatRoomMessages')
+            ->name('get-chat-room-messages');
+        Route::post('/chat/{chat}/store', 'createChatRoomMessage')
+            ->name('create-chat-room-message');
+    });

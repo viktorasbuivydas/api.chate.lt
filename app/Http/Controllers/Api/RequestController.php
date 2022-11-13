@@ -2,16 +2,28 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Domains\Request\Actions\CreateRequestAction;
-use App\Domains\Request\DataTransfers\RequestData;
-use App\Domains\Request\Requests\CreateRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Request\CreateRequest;
+use App\Services\Interfaces\RequestServiceInterface;
 
 class RequestController extends Controller
 {
+    protected RequestServiceInterface $requestService;
+
+    public function __construct(
+        RequestServiceInterface $requestService
+    ) {
+        $this->requestService = $requestService;
+    }
+
     public function store(CreateRequest $request)
     {
-        return app(CreateRequestAction::class)
-            ->handle(RequestData::fromRequest($request));
+        return $this->requestService
+            ->sendRequest(
+                [
+                    'email' => $request->input('email'),
+                    'content' => $request->input('content'),
+                ]
+            );
     }
 }

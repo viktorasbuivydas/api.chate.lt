@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('email');
             $table->text('content');
+            $table->dateTime('approved_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
