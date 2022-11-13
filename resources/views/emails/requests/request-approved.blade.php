@@ -1,3 +1,3 @@
-Request approved successfully!
-Click link to register: 
-{{ $code }}
+Jūs gavote pakvietimą į CHATE.LT projektą.
+Paspauskite nuorodą norėdami užsiregistruoti:
+<a href="https://chate.lt/{{$code}}/register">tęsti</a>
