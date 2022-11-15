@@ -23,15 +23,11 @@ class ChatRoomMessageService extends BaseService implements ChatRoomMessageServi
 
     public function getChatRoomMessages(int $chatId)
     {
-        $room = $this->chatRoomRepository->getChatRoomMessages($chatId);
-
-        $messages = $room->messages->groupBy(
-            fn ($item) => $item->created_at->format('Y-m-d')
-        )->reverse();
-
-        return $messages->map(
-            fn ($item) => ChatMessageResource::collection($item->reverse())
-        );
+        $roomMessages = $this->chatRoomMessageRepository->getMessages($chatId);
+        // $messages = $roomMessages->groupBy(
+        //     fn ($item) => $item->created_at->format('Y-m-d')
+        // )->reverse();
+        return ChatMessageResource::collection($roomMessages);
     }
 
     public function createChatRoomMessage(array $data)

@@ -17,15 +17,4 @@ class ChatRoomRepository extends BaseRepository implements ChatRoomRepositoryInt
             ])
             ->get();
     }
-
-    public function getChatRoomMessages(int $chatId)
-    {
-        return $this->getModelInstance()
-            ->with([
-                'messages' => fn ($q) => $q->latest(),
-                'messages.user',
-            ])
-            ->whereId($chatId)
-            ->first();
-    }
 }
