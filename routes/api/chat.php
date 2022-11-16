@@ -32,6 +32,8 @@ Route::controller(ChatRoomMessageController::class)
     ->group(function () {
         Route::get('/chat/{chat}/index', 'getChatRoomMessages')
             ->name('get-chat-room-messages');
+        Route::get('/chat/{chat}/skip', 'getChatRoomMessageSkip')
+            ->name('get-chat-room-messages-count');
         Route::post('/chat/{chat}/store', 'createChatRoomMessage')
             ->name('create-chat-room-message');
     });

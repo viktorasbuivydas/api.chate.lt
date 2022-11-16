@@ -9,13 +9,24 @@ class ChatRoomMessageRepository extends BaseRepository implements ChatRoomMessag
 {
     public $model = ChatRoomMessage::class;
 
-    public function getMessages(int $chatId)
+    public function getMessages(int $chatId, int $skip, int $take)
     {
         return $this->getModelInstance()
             ->with([
                 'user',
             ])
             ->where('chat_room_id', $chatId)
-            ->paginate(20);
+            ->take($take)
+            ->skip($skip)
+            ->orderBy('id', 'asc')
+            ->get();
+    }
+
+    public function getMessagesCount(int $chatId)
+    {
+        return $this->getModelInstance()
+            ->select('id', 'chat_room_id')
+            ->where('chat_room_id', $chatId)
+            ->count();
     }
 }

@@ -21,13 +21,25 @@ class ChatRoomMessageService extends BaseService implements ChatRoomMessageServi
         $this->chatRoomRepository = $chatRoomRepository;
     }
 
-    public function getChatRoomMessages(int $chatId)
+    public function getChatRoomMessages(int $chatId, int $skip, int $take)
     {
-        $roomMessages = $this->chatRoomMessageRepository->getMessages($chatId);
-        // $messages = $roomMessages->groupBy(
-        //     fn ($item) => $item->created_at->format('Y-m-d')
-        // )->reverse();
+        $totalMessageCount = $this->chatRoomMessageRepository->getMessagesCount($chatId);
+
+        if ($skip === 0) {
+            $take = $totalMessageCount % 20;
+        }
+
+        $roomMessages = $this->chatRoomMessageRepository->getMessages($chatId, $skip, $take);
+
         return ChatMessageResource::collection($roomMessages);
+    }
+
+    public function getChatRoomMessageSkip($chatId)
+    {
+        $messageCount = $this->chatRoomMessageRepository->getMessagesCount($chatId);
+        $skip = $messageCount - 20;
+
+        return $skip > 0 ? $skip : $messageCount;
     }
 
     public function createChatRoomMessage(array $data)

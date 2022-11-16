@@ -19,7 +19,19 @@ class ChatRoomMessageController extends Controller
 
     public function getChatRoomMessages(ChatRoom $chat)
     {
-        return $this->chatRoomMessageService->getChatRoomMessages($chat->id);
+        $skip = 0;
+        if (request()->has('skip')) {
+            $skip = request()->input('skip');
+        }
+
+        $take = 20;
+
+        return $this->chatRoomMessageService->getChatRoomMessages($chat->id, $skip, $take);
+    }
+
+    public function getChatRoomMessageSkip(ChatRoom $chat)
+    {
+        return $this->chatRoomMessageService->getChatRoomMessageSkip($chat->id);
     }
 
     public function createChatRoomMessage(CreateChatMessageRequest $request, ChatRoom $chat)
