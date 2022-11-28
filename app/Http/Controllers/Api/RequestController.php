@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Request\CreateRequest;
+use App\Http\Requests\Request\GetRequest;
+use App\Http\Resources\RequestResource;
+use App\Models\Request as RequestModel;
 use App\Services\Interfaces\RequestServiceInterface;
 
 class RequestController extends Controller
@@ -16,6 +19,19 @@ class RequestController extends Controller
         $this->requestService = $requestService;
     }
 
+    public function index(GetRequest $request)
+    {
+        $requests = $this->requestService->getRequests(
+            $request->input('type')
+        );
+
+        if (! $requests) {
+            return [];
+        }
+
+        return RequestResource::collection($requests);
+    }
+
     public function store(CreateRequest $request)
     {
         return $this->requestService
@@ -25,5 +41,17 @@ class RequestController extends Controller
                     'content' => $request->input('content'),
                 ]
             );
+    }
+
+    public function approve(RequestModel $request)
+    {
+        return $this->requestService
+            ->approveRequest($request->email, $request->id);
+    }
+
+    public function delete(RequestModel $request)
+    {
+        return $this->requestService
+            ->deleteRequest($request->id);
     }
 }

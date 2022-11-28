@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\ChatRoomMessageObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,5 +24,11 @@ class ChatRoomMessage extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function boot(): void
+    {
+        parent::boot();
+        ChatRoomMessage::observe(ChatRoomMessageObserver::class);
     }
 }

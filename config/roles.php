@@ -69,7 +69,7 @@ return [
         'update forum subject',
         'delete forum subject',
 
-        'lock forum post'
+        'lock forum post',
     ],
     'moderator' => [
         'ban',
@@ -78,9 +78,10 @@ return [
         'approve request',
         'cancel request',
         'invite user',
-        'remove chat message'
+        'remove chat message',
     ],
     'vip' => [
         'change topic',
-    ]
+    ],
+    'user' => [],
 ];

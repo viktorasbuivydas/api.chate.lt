@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Resources\Chat\ChatMessageResource;
+use App\Http\Resources\ChatMessageResource;
 use App\Repositories\Interfaces\ChatRoomMessageRepositoryInterface;
 use App\Repositories\Interfaces\ChatRoomRepositoryInterface;
 use App\Services\Interfaces\ChatRoomMessageServiceInterface;
@@ -21,25 +21,22 @@ class ChatRoomMessageService extends BaseService implements ChatRoomMessageServi
         $this->chatRoomRepository = $chatRoomRepository;
     }
 
-    public function getChatRoomMessages(int $chatId, int $skip, int $take)
+    public function getChatRoomMessages(int $chatId)
     {
-        $totalMessageCount = $this->chatRoomMessageRepository->getMessagesCount($chatId);
-
-        if ($skip === 0) {
-            $take = $totalMessageCount % 20;
+        if (request()->has('last_message_id')) {
+            return $this->getChatRoomNewMessages($chatId, request()->input('last_message_id'));
         }
 
-        $roomMessages = $this->chatRoomMessageRepository->getMessages($chatId, $skip, $take);
+        $roomMessages = $this->chatRoomMessageRepository->getMessages($chatId);
 
         return ChatMessageResource::collection($roomMessages);
     }
 
-    public function getChatRoomMessageSkip($chatId)
+    public function getChatRoomNewMessages(int $chatId, int $lastMessageId)
     {
-        $messageCount = $this->chatRoomMessageRepository->getMessagesCount($chatId);
-        $skip = $messageCount - 20;
+        $roomMessages = $this->chatRoomMessageRepository->getNewMessages($chatId, $lastMessageId);
 
-        return $skip > 0 ? $skip : $messageCount;
+        return ChatMessageResource::collection($roomMessages);
     }
 
     public function createChatRoomMessage(array $data)

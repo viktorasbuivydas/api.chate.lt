@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('thread_questions', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('content');
             $table->foreignId('thread_id')->onCascade('delete');
-            $table->foreignId('question_id')->onCascade('delete');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

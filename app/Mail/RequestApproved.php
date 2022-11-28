@@ -51,7 +51,7 @@ class RequestApproved extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.requests.request-approved',
+            markdown: 'emails.requests.request-approved',
             with: ['code' => $this->code]
         );
     }

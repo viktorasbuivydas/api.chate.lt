@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_comments', function (Blueprint $table) {
+            $table->text('content');
             $table->foreignId('user_id')->onCascade('delete');
             $table->foreignId('sender_id')->onCascade('delete');
         });

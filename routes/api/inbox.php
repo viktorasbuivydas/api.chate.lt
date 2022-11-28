@@ -11,7 +11,7 @@ Route::controller(InboxController::class)
         'online',
     ])
     ->group(function () {
-        Route::get('index/{type}', 'getMessages')
+        Route::get('index', 'getMessages')
             ->name('get-messages');
         Route::get('{messageId}', 'showMessage')
             ->name('get-message');

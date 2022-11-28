@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->onCascade('delete');
             $table->foreignId('chat_room_id')->onCascade('delete');
             $table->text('content');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

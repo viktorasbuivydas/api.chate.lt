@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('tutorial_id')->onCascade('delete');
             $table->foreignId('user_id')->onCascade('delete');
             $table->text('content');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

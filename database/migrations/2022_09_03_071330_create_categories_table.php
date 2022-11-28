@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('parent_id')->onCascade('delete');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

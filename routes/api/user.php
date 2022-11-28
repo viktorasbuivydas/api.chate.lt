@@ -15,4 +15,9 @@ Route::controller(UserController::class)
 
         Route::get('about/{username}', 'getSelectedUsernameUserData')
             ->name('about');
+
+        Route::group(['prefix' => 'user'], function () {
+            Route::patch('password', 'changePassword')
+                ->name('about');
+        });
     });

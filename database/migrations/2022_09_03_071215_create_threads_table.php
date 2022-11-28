@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('icon')->nullable();
+            $table->integer('position')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

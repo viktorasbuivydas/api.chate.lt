@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Online\OnlineResource;
+use App\Http\Resources\OnlineResource;
 use App\Services\Interfaces\OnlineServiceInterface;
 
 class OnlineController extends Controller

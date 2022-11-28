@@ -14,9 +14,13 @@ use App\Services\Interfaces\CodeServiceInterface;
 use App\Services\Interfaces\InboxServiceInterface;
 use App\Services\Interfaces\OnlineServiceInterface;
 use App\Services\Interfaces\RequestServiceInterface;
+use App\Services\Interfaces\ThreadQuestionServiceInterface;
+use App\Services\Interfaces\ThreadServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use App\Services\OnlineService;
 use App\Services\RequestService;
+use App\Services\ThreadQuestionService;
+use App\Services\ThreadService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
@@ -79,6 +83,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             AuthServiceInterface::class,
             AuthService::class,
+        );
+
+        $this->app->singleton(
+            ThreadServiceInterface::class,
+            ThreadService::class
+        );
+
+        $this->app->singleton(
+            ThreadQuestionServiceInterface::class,
+            ThreadQuestionService::class
         );
     }
 }

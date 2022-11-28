@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Domains\Chat\Models\ChatMessage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -43,13 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function messages()
+    public function messages(): HasMany
     {
-        return $this->belongsTo(ChatMessage::class, 'receiver_id');
+        return $this->hasMany(Inbox::class, 'receiver_id');
     }
 
-    public function sentMessages()
+    public function sentMessages(): HasMany
     {
-        return $this->belongsTo(ChatMessage::class, 'sender_id');
+        return $this->hasMany(Inbox::class, 'sender_id');
     }
 }

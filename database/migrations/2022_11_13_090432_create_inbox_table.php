@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('receiver_id')->onCascade('delete');
             $table->text('content');
             $table->timestamp('read_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

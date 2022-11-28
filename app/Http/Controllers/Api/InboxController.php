@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inbox\InboxTypeRequest;
 use App\Http\Requests\Inbox\SendMessageRequest;
+use App\Http\Resources\InboxResource;
 use App\Services\Interfaces\InboxServiceInterface;
 
 class InboxController extends Controller
@@ -16,9 +18,15 @@ class InboxController extends Controller
         $this->inboxService = $inboxService;
     }
 
-    public function getMessages(string $type)
+    public function getMessages(InboxTypeRequest $request)
     {
-        return $this->inboxService->getMessages($type);
+        $inbox = $this->inboxService->getMessages($request->input('type'));
+
+        if (! $inbox) {
+            return [];
+        }
+
+        return InboxResource::collection($inbox);
     }
 
     public function getMessage(int $messageId)

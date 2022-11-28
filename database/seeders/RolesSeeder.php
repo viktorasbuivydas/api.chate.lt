@@ -48,6 +48,7 @@ class RolesSeeder extends Seeder
 
         $roles->map(function ($role) {
             $permissions = match ($role->name) {
+                'user' => [''],
                 'vip' => ['vip'],
                 'moderator' => ['vip', 'moderator'],
                 'admin' => ['vip', 'moderator', 'admin'],

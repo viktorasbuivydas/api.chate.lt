@@ -24,7 +24,7 @@ Route::controller(ChatRoomController::class)
     });
 
 Route::controller(ChatRoomMessageController::class)
-    ->as('chat-messages')
+    ->as('chat-messages.')
     ->middleware([
         'auth:sanctum',
         'online',

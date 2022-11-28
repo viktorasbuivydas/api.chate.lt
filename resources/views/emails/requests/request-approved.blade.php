@@ -1,3 +1,10 @@
-Jūs gavote pakvietimą į CHATE.LT projektą.
-Paspauskite nuorodą norėdami užsiregistruoti:
-<a href="https://chate.lt/{{$code}}/register">tęsti</a>
+@extends("emails.base")
+
+@section('main')
+
+# Jūs gavote pakvietimą į CHATE.LT projektą.
+
+<p><a href="https://chate.lt/auth/register/{{$code}}">Registruotis</a>
+</p>
+
+@endsection
