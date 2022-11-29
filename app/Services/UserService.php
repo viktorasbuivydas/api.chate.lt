@@ -29,7 +29,7 @@ class UserService extends BaseService implements UserServiceInterface
     public function getSelectedUsernameUserData(string $username)
     {
         $user = $this->userRepository->getUserByField('username', $username);
-
+        $user->load('roles');
         if (! $user) {
             throw new UserNotFoundException();
         }
@@ -58,6 +58,12 @@ class UserService extends BaseService implements UserServiceInterface
     {
         return $this->userRepository
             ->getMessages(auth()->id());
+    }
+
+    public function getNewMessages(int $userId)
+    {
+        return $this->userRepository
+            ->getNewMessages(auth()->id());
     }
 
     public function getSentMessages(int $userId)

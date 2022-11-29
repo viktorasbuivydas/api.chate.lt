@@ -12,12 +12,8 @@ class InboxResource extends JsonResource
             'id' => $this->id,
             'content' => $this->content,
             'read_at' => $this->read_at,
-            'sender' => $this->whenLoaded('sender', function () {
-                return new UserResource($this->sender);
-            }),
-            'receiver' => $this->whenLoaded('receiver', function () {
-                return new UserResource($this->receiver);
-            }),
+            'sender' => $this->sender?->username,
+            'receiver' => $this->receiver?->username,
         ];
     }
 }

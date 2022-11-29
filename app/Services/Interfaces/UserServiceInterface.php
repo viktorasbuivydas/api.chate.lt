@@ -12,5 +12,7 @@ interface UserServiceInterface
 
     public function getMessages(int $userId);
 
+    public function getNewMessages(int $userId);
+
     public function getSentMessages(int $userId);
 }

@@ -13,7 +13,9 @@ Route::controller(InboxController::class)
     ->group(function () {
         Route::get('index', 'getMessages')
             ->name('get-messages');
-        Route::get('{messageId}', 'showMessage')
+        Route::get('new', 'getNewMessages')
+            ->name('get-new-messages');
+        Route::get('{messageId}', 'getMessage')
             ->name('get-message');
         Route::post('store', 'sendMessage')
             ->name('send-message');

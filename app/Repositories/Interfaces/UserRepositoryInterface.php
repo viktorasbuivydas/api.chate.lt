@@ -6,6 +6,8 @@ interface UserRepositoryInterface
 {
     public function getMessages(int $userId);
 
+    public function getNewMessages(int $userId);
+
     public function getSentMessages(int $userId);
 
     public function getUserData(int $userId);

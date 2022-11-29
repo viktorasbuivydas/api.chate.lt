@@ -22,6 +22,10 @@ return new class extends Migration
             $table->integer('reputation')->default(0);
             $table->integer('reputation_points')->default(0);
             $table->integer('money')->default(0);
+            $table->integer('chat_message_count')->default(0);
+            $table->integer('forum_message_count')->default(0);
+            $table->integer('forum_thread_count')->default(0);
+            $table->integer('inbox_sent_message_count')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

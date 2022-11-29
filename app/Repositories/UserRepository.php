@@ -18,6 +18,15 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             ->first();
     }
 
+    public function getNewMessages(int $userId)
+    {
+        return $this->getModelInstance()
+            ->whereId($userId)
+            ->with('messages.receiver')
+            ->withWhereHas('messages', fn ($query) => $query->unread())
+            ->first();
+    }
+
     public function getSentMessages(int $userId)
     {
         return $this->getModelInstance()

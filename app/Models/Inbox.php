@@ -26,4 +26,9 @@ class Inbox extends Model
     {
         return $this->belongsTo(User::class, 'receiver_id', 'id');
     }
+
+    public function scopeUnread($query)
+    {
+        return $query->whereNull('read_at');
+    }
 }

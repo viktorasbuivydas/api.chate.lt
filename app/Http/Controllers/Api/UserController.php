@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PasswordRequest;
+use App\Http\Resources\UserAboutResource;
 use App\Http\Resources\UserResource;
 use App\Services\Interfaces\UserServiceInterface;
 
@@ -27,7 +28,7 @@ class UserController extends Controller
     {
         $user = $this->userService->getSelectedUsernameUserData($username);
 
-        return new UserResource($user);
+        return new UserAboutResource($user);
     }
 
     public function changePassword(PasswordRequest $request)
