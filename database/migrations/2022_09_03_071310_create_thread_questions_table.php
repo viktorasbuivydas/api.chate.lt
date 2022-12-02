@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('content');
             $table->foreignId('thread_id')->onCascade('delete');
+            $table->foreignId('user_id')->onCascade('delete');
             $table->softDeletes();
             $table->timestamps();
         });

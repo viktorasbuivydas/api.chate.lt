@@ -10,10 +10,6 @@ return [
             'name' => 'Programavimas',
             'is_public' => true
         ],
-        [
-            'name' => 'Valdžia',
-            'is_public' => false
-        ]
     ],
     'forum' => [
         'CHATE.LT' => [

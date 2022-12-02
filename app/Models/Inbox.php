@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\InboxObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,5 +31,11 @@ class Inbox extends Model
     public function scopeUnread($query)
     {
         return $query->whereNull('read_at');
+    }
+
+    public static function boot(): void
+    {
+        parent::boot();
+        Inbox::observe(InboxObserver::class);
     }
 }

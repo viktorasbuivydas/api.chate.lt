@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ThreadController;
+use App\Http\Controllers\Api\ThreadQuestionController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -18,4 +19,10 @@ Route::group([
         ->name('threads.update');
     Route::delete('/threads/{thread}/delete', [ThreadController::class, 'delete'])
         ->name('threads.delete');
+
+    Route::get('/questions/thread/{thread}', [ThreadQuestionController::class, 'getQuestions'])
+        ->name('questions.index');
+
+    Route::get('/questions/{question}', [ThreadQuestionController::class, 'getQuestion'])
+        ->name('questions.show');
 });

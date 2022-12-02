@@ -8,7 +8,7 @@ interface InboxServiceInterface
 
     public function getNewMessages();
 
-    public function getMessage(int $messageId);
+    public function getMessage(int $messageId, int $userId);
 
     public function sendMessage(array $data);
 }

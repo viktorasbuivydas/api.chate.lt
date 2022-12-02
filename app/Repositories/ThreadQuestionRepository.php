@@ -9,12 +9,17 @@ class ThreadQuestionRepository extends BaseRepository implements ThreadQuestionR
 {
     public $model = ThreadQuestion::class;
 
-    public function getTopics()
+    public function getQuestions(int $threadId)
     {
         return $this->getModelInstance()
-            ->withCount([
-                'messages',
-            ])
+            ->where('thread_id', $threadId)
             ->get();
+    }
+
+    public function getQuestion(int $questionId)
+    {
+        return $this->getModelInstance()
+            ->where('id', $questionId)
+            ->first();
     }
 }

@@ -44,17 +44,17 @@ class InboxService extends BaseService implements InboxServiceInterface
         return $inbox;
     }
 
-    public function getMessage(int $messageId)
+    public function getMessage(int $messageId, int $userId)
     {
-        $user = $this->userService->getLoggedInUserData();
-
-        $message = $this->inboxRepository->getMessage($messageId, $user->id);
+        $message = $this->inboxRepository->getMessage($messageId, $userId);
 
         abort_if(! $message, 404);
 
-        if ($user->username === $message->receiver->username && $message->read_at == null) {
+        if ($userId === $message->receiver_id && $message->read_at === null) {
             $this->inboxRepository->markAsRead($messageId);
         }
+
+        $message = $this->inboxRepository->getMessage($messageId, $userId);
 
         return $message;
     }

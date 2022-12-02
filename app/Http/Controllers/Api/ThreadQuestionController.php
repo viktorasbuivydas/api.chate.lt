@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ThreadQuestionResource;
+use App\Models\Thread;
+use App\Models\ThreadQuestion;
 use App\Services\Interfaces\ThreadQuestionServiceInterface;
 
 class ThreadQuestionController extends Controller
@@ -15,9 +18,25 @@ class ThreadQuestionController extends Controller
         $this->threadQuestionService = $threadQuestionService;
     }
 
-    public function index()
+    public function getQuestions(Thread $thread)
     {
-        // return $this->threadQuestionService
-        //     ->sendCode($request->input('email'));
+        $questions = $this->threadQuestionService
+            ->getQuestions($thread->id);
+
+        if (!$questions) {
+            return [];
+        }
+
+        return ThreadQuestionResource::collection($questions);
+    }
+
+    public function getQuestion(ThreadQuestion $question)
+    {
+        $question = $this->threadQuestionService
+            ->getQuestion($question->id);
+
+        abort_if(!$question, 404);
+
+        return new ThreadQuestionResource($question);
     }
 }

@@ -19,7 +19,16 @@ class ChatRoomMessageObserver
     {
         $this->userRepository
             ->incrementValue(
-                'reputation_points', config('settings.reputation_points.chat_message'),
-                $message->user_id);
+                'reputation_points',
+                config('settings.reputation_points.chat_message'),
+                $message->user_id
+            );
+
+        $this->userRepository
+            ->incrementValue(
+                'chat_message_count',
+                1,
+                $message->user_id
+            );
     }
 }

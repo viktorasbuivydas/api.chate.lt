@@ -15,15 +15,13 @@ class InboxRepository extends BaseRepository implements InboxRepositoryInterface
         return $this->getModelInstance()
             ->with(['sender', 'receiver'])
             ->where('id', $messageId)
-            ->where('sender_id', $userId)
-            ->orWhere('receiver_id', $userId)
             ->first();
     }
 
     public function markAsRead(int $messageId)
     {
         return $this->getModelInstance()
-            ->whereId($messageId)
+            ->where('id', $messageId)
             ->whereNull('read_at')
             ->update(['read_at' => Carbon::now()]);
     }

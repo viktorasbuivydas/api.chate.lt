@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Services\Interfaces;
+namespace App\Repositories\Interfaces;
 
-interface ThreadQuestionServiceInterface
+interface ThreadQuestionRepositoryInterface
 {
-
     public function getQuestions(int $threadId);
 
     public function getQuestion(int $questionId);

@@ -45,14 +45,14 @@ return [
     'max' => [
         'numeric' => 'Lauko :attribute reikšmė negali būti didesnė nei :max.',
         'file' => 'Failo dydis lauke :attribute reikšmė negali būti didesnė nei :max kilobaitų.',
-        'string' => 'Simbolių kiekis lauke :attribute reikšmė negali būti didesnė nei :max simbolių.',
+        'string' => 'Maksimalus simbolų kiekis: :max.',
         'array' => 'Elementų kiekis lauke :attribute negali turėti daugiau nei :max elementų.',
     ],
     'mimes' => 'Lauko reikšmė :attribute turi būti failas vieno iš sekančių tipų: :values.',
     'min' => [
         'numeric' => 'Lauko :attribute reikšmė turi būti ne mažesnė nei :min.',
         'file' => 'Failo dydis lauke :attribute turi būti ne mažesnis nei :min kilobaitų.',
-        'string' => 'Simbolių kiekis lauke :attribute turi būti ne mažiau nei :min.',
+        'string' => 'Minimalus simbolių kiekis: :min.',
         'array' => 'Elementų kiekis lauke :attribute turi būti ne mažiau nei :min.',
     ],
     'not_in' => 'Pasirinkta negaliojanti reikšmė :attribute.',
@@ -65,7 +65,7 @@ return [
     'required_with_all' => 'Privaloma užpildyti lauką :attribute kai pateikta :values.',
     'required_without' => 'Privaloma užpildyti lauką :attribute kai nepateikta :values.',
     'required_without_all' => 'Privaloma užpildyti lauką :attribute kai nepateikta nei viena iš reikšmių :values.',
-    'same' => 'Laukai :attribute ir :other turi sutapti.',
+    'same' => 'Laukeliai :attribute ir :other turi sutapti.',
     'size' => [
         'numeric' => 'Lauko :attribute reikšmė turi būti :size.',
         'file' => 'Failo dydis lauke :attribute turi būti :size kilobaitai.',
@@ -106,7 +106,9 @@ return [
     */
 
     'attributes' => [
-        //
+        'password' => 'slaptažodis',
+        'new_password' => 'naujas slaptažodis',
+        'new_confirm_password' => 'kartojamas slaptažodis'
     ],
 
 ];

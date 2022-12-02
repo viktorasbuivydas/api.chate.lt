@@ -13,6 +13,6 @@ class PasswordDoesNotMatchException extends Exception
 
     public function render($request)
     {
-        return response()->json(['message' => 'Pasword does not match'], 401);
+        return response()->json(['message' => 'Įvestas slaptažodis yra neteisingas'], 401);
     }
 }

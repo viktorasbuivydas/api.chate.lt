@@ -10,8 +10,18 @@ class ThreadQuestionService extends BaseService implements ThreadQuestionService
     protected ThreadQuestionRepositoryInterface $threadQuestionRepository;
 
     public function __construct(
-        ThreadQuestionRepositoryInterface $threadRepository,
+        ThreadQuestionRepositoryInterface $threadQuestionRepository,
     ) {
-        $this->threadRepository = $threadRepository;
+        $this->threadQuestionRepository = $threadQuestionRepository;
+    }
+
+    public function getQuestions(int $threadId)
+    {
+        return $this->threadQuestionRepository->getQuestions($threadId);
+    }
+
+    public function getQuestion(int $questionId)
+    {
+        return $this->threadQuestionRepository->getQuestion($questionId);
     }
 }

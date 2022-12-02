@@ -22,3 +22,5 @@ Route::group([], base_path('routes/api/user.php'));
 Route::group([], base_path('routes/api/online.php'));
 Route::group([], base_path('routes/api/inbox.php'));
 Route::group([], base_path('routes/api/forum.php'));
+Route::group([], base_path('routes/api/topic.php'));
+Route::group([], base_path('routes/api/media.php'));

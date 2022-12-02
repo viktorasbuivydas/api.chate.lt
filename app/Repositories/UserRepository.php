@@ -14,7 +14,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $this->getModelInstance()
             ->whereId($userId)
             ->with('messages.receiver')
-            ->withWhereHas('messages')
+            ->withWhereHas('messages', fn ($query) => $query->orderBy('id', 'desc'))
             ->first();
     }
 
@@ -32,7 +32,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $this->getModelInstance()
             ->whereId($userId)
             ->with('sentMessages.sender')
-            ->withWhereHas('sentMessages')
+            ->withWhereHas('sentMessages', fn ($query) => $query->orderBy('id', 'desc'))
             ->first();
     }
 

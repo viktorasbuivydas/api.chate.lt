@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('thread_comments', function (Blueprint $table) {
             $table->id();
             $table->string('content');
-            $table->foreignId('thread_id')->onCascade('delete');
+            $table->foreignId('question_id')->onCascade('delete');
             $table->foreignId('user_id')->onCascade('delete');
             $table->softDeletes();
             $table->timestamps();
