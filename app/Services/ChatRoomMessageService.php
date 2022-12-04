@@ -4,12 +4,9 @@ namespace App\Services;
 
 use App\DataTransfer\ChatRoomMessageData;
 use App\Events\MessageSent;
-use App\Http\Resources\ChatMessageResource;
-use App\Models\ChatRoomMessage;
 use App\Repositories\Interfaces\ChatRoomMessageRepositoryInterface;
 use App\Repositories\Interfaces\ChatRoomRepositoryInterface;
 use App\Services\Interfaces\ChatRoomMessageServiceInterface;
-use Illuminate\Support\Arr;
 
 class ChatRoomMessageService extends BaseService implements ChatRoomMessageServiceInterface
 {
@@ -41,9 +38,9 @@ class ChatRoomMessageService extends BaseService implements ChatRoomMessageServi
 
         $message->load('user');
 
-        event(new MessageSent(
+        broadcast(new MessageSent(
             ChatRoomMessageData::fromModel($message)
-        ));
+        ))->toOthers();
 
         return ChatRoomMessageData::fromModel($message);
     }
