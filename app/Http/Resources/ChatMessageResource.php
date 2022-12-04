@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ChatRoomMessage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ChatMessageResource extends JsonResource
@@ -11,10 +12,8 @@ class ChatMessageResource extends JsonResource
         return [
             'id' => $this->id,
             'content' => $this->content,
-            'created_at' => $this->created_at->diffForHumans(),
-            'user' => $this->whenLoaded('user', function () {
-                return new UserResource($this->whenLoaded('user'));
-            }),
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'username' => $this->user->username
         ];
     }
 }

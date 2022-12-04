@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MessageSent;
 use App\Http\Controllers\Api\ChatRoomController;
 use App\Http\Controllers\Api\ChatRoomMessageController;
 use Illuminate\Support\Facades\Route;

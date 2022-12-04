@@ -20,19 +20,6 @@ class ChatRoomMessageRepository extends BaseRepository implements ChatRoomMessag
             ->paginate();
     }
 
-    public function getNewMessages(int $chatId, int $lastMessageId)
-    {
-        return $this->getModelInstance()
-            ->with([
-                'user',
-            ])
-            ->where('chat_room_id', $chatId)
-            ->where('id', '>', $lastMessageId)
-            ->orderBy('id', 'desc')
-            ->limit(10)
-            ->get();
-    }
-
     public function getMessagesCount(int $chatId)
     {
         return $this->getModelInstance()
