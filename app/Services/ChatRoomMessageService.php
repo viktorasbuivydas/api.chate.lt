@@ -2,10 +2,14 @@
 
 namespace App\Services;
 
+use App\DataTransfer\ChatRoomMessageData;
+use App\Events\MessageSent;
 use App\Http\Resources\ChatMessageResource;
+use App\Models\ChatRoomMessage;
 use App\Repositories\Interfaces\ChatRoomMessageRepositoryInterface;
 use App\Repositories\Interfaces\ChatRoomRepositoryInterface;
 use App\Services\Interfaces\ChatRoomMessageServiceInterface;
+use Illuminate\Support\Arr;
 
 class ChatRoomMessageService extends BaseService implements ChatRoomMessageServiceInterface
 {
@@ -23,25 +27,24 @@ class ChatRoomMessageService extends BaseService implements ChatRoomMessageServi
 
     public function getChatRoomMessages(int $chatId)
     {
-        if (request()->has('last_message_id')) {
-            return $this->getChatRoomNewMessages($chatId, request()->input('last_message_id'));
-        }
-
         $roomMessages = $this->chatRoomMessageRepository->getMessages($chatId);
 
-        return ChatMessageResource::collection($roomMessages);
-    }
-
-    public function getChatRoomNewMessages(int $chatId, int $lastMessageId)
-    {
-        $roomMessages = $this->chatRoomMessageRepository->getNewMessages($chatId, $lastMessageId);
-
-        return ChatMessageResource::collection($roomMessages);
+        return ChatRoomMessageData::collection($roomMessages);
     }
 
     public function createChatRoomMessage(array $data)
     {
-        return $this->chatRoomMessageRepository
+        $message = $this->chatRoomMessageRepository
             ->createOrUpdateFromArray($data);
+
+        abort_if(!$message, 400);
+
+        $message->load('user');
+
+        event(new MessageSent(
+            ChatRoomMessageData::fromModel($message)
+        ));
+
+        return ChatRoomMessageData::fromModel($message);
     }
 }
