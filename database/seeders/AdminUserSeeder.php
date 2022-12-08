@@ -15,8 +15,8 @@ class AdminUserSeeder extends Seeder
     public function run()
     {
         $user = User::factory()->create([
-            'username' => 'admin',
-            'email' => 'admin@gmail.com',
+            'username' => 'Merkurijus',
+            'email' => 'viktoras162@gmail.com',
         ]);
 
         $user->assignRole('super admin');
