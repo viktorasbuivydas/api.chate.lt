@@ -20,5 +20,5 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('chat.{chatId}', function ($user, $chatId) {
-    return true;
+    return $user;
 });

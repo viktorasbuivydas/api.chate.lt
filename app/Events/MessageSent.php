@@ -3,8 +3,9 @@
 namespace App\Events;
 
 use app\DataTransfer\ChatRoomMessageData;
+use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -20,6 +21,7 @@ class MessageSent implements ShouldBroadcast
      */
     public function __construct(
         public ChatRoomMessageData $message,
+        public User $user
     ) {
         //
     }
@@ -31,6 +33,14 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat.' . $this->message->chatRoomId);
+        return new PresenceChannel('chat.' . $this->message->chatRoomId);
+    }
+
+    public function broadCastWith()
+    {
+        return [
+            'message' => $this->message,
+            'user' => $this->user->only(['username'])
+        ];
     }
 }
