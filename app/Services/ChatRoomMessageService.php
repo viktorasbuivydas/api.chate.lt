@@ -40,7 +40,7 @@ class ChatRoomMessageService extends BaseService implements ChatRoomMessageServi
 
         broadcast(new MessageSent(
             ChatRoomMessageData::fromModel($message)
-        ))->toOthers();
+        ));
 
         return ChatRoomMessageData::fromModel($message);
     }
