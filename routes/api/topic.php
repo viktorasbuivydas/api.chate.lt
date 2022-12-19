@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\ThreadController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ThreadController;
 
 Route::group([
     'middleware' => [

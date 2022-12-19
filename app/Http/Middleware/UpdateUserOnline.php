@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Online;
 use Closure;
+use App\Models\Online;
 use Illuminate\Http\Request;
 
 class UpdateUserOnline

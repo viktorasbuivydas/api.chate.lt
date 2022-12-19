@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\PasswordRequest;
-use App\Http\Resources\UserAboutResource;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UserAboutResource;
+use App\Http\Requests\User\PasswordRequest;
 use App\Services\Interfaces\UserServiceInterface;
 
 class UserController extends Controller

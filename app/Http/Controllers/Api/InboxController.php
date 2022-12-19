@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\InboxResource;
 use App\Http\Requests\Inbox\InboxTypeRequest;
 use App\Http\Requests\Inbox\SendMessageRequest;
-use App\Http\Resources\InboxResource;
-use App\Services\Interfaces\InboxServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
+use App\Services\Interfaces\InboxServiceInterface;
 
 class InboxController extends Controller
 {

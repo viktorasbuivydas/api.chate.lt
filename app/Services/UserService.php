@@ -7,6 +7,7 @@ use App\Exceptions\UserNotFoundException;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use App\Traits\Response;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class UserService extends BaseService implements UserServiceInterface
@@ -57,18 +58,27 @@ class UserService extends BaseService implements UserServiceInterface
     public function getMessages(int $userId)
     {
         return $this->userRepository
-            ->getMessages(auth()->id());
+            ->getMessages($userId);
     }
 
     public function getNewMessages(int $userId)
     {
         return $this->userRepository
-            ->getNewMessages(auth()->id());
+            ->getNewMessages($userId);
     }
 
     public function getSentMessages(int $userId)
     {
         return $this->userRepository
-            ->getSentMessages(auth()->id());
+            ->getSentMessages($userId);
+    }
+
+    public function updateAntispam(int $userId)
+    {
+        return $this->userRepository->update(
+            $userId,
+            [
+                'antispam' => Carbon::now()->addSeconds(10),
+            ]);
     }
 }

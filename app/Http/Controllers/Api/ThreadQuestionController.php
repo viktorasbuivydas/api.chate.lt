@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\ThreadQuestionResource;
 use App\Models\Thread;
 use App\Models\ThreadQuestion;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ThreadQuestionResource;
+use App\Http\Requests\Thread\StoreQuestionRequest;
 use App\Services\Interfaces\ThreadQuestionServiceInterface;
 
 class ThreadQuestionController extends Controller
@@ -23,7 +24,7 @@ class ThreadQuestionController extends Controller
         $questions = $this->threadQuestionService
             ->getQuestions($thread->id);
 
-        if (!$questions) {
+        if (! $questions) {
             return [];
         }
 
@@ -35,8 +36,17 @@ class ThreadQuestionController extends Controller
         $question = $this->threadQuestionService
             ->getQuestion($question->id);
 
-        abort_if(!$question, 404);
+        abort_if(! $question, 404);
 
         return new ThreadQuestionResource($question);
+    }
+
+    public function store(StoreQuestionRequest $request, Thread $thread)
+    {
+        return $this->threadQuestionService
+            ->createQuestion($thread->id, [
+                'name' => $request->input('name'),
+                'content' => $request->input('content'),
+            ]);
     }
 }

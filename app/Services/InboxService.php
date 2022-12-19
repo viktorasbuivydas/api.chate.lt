@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Exceptions\WrongUsernameException;
-use App\Repositories\Interfaces\InboxRepositoryInterface;
-use App\Services\Interfaces\InboxServiceInterface;
-use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Support\Arr;
+use App\Exceptions\WrongUsernameException;
+use App\Services\Interfaces\UserServiceInterface;
+use App\Services\Interfaces\InboxServiceInterface;
+use App\Repositories\Interfaces\InboxRepositoryInterface;
 
 class InboxService extends BaseService implements InboxServiceInterface
 {

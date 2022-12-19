@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use App\Models\Request;
 use App\Repositories\Interfaces\RequestRepositoryInterface;
-use Carbon\Carbon;
 
 class RequestRepository extends BaseRepository implements RequestRepositoryInterface
 {

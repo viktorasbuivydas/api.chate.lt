@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\User;
 use App\Services\Interfaces\AuthServiceInterface;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -45,5 +45,10 @@ class AuthController extends Controller
                 'password' => $request->input('password'),
             ]
         );
+    }
+
+    public function logout()
+    {
+        return $this->authService->logout();
     }
 }

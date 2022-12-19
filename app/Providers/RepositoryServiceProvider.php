@@ -2,25 +2,27 @@
 
 namespace App\Providers;
 
-use App\Repositories\ChatRoomMessageRepository;
-use App\Repositories\ChatRoomRepository;
 use App\Repositories\CodeRepository;
+use App\Repositories\UserRepository;
 use App\Repositories\InboxRepository;
-use App\Repositories\Interfaces\ChatRoomMessageRepositoryInterface;
-use App\Repositories\Interfaces\ChatRoomRepositoryInterface;
+use App\Repositories\OnlineRepository;
+use App\Repositories\ThreadRepository;
+use App\Repositories\RequestRepository;
+use Illuminate\Support\ServiceProvider;
+use App\Repositories\ChatRoomRepository;
+use App\Repositories\ThreadQuestionRepository;
+use App\Repositories\ChatRoomMessageRepository;
+use App\Repositories\QuestionCommentRepository;
 use App\Repositories\Interfaces\CodeRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Interfaces\InboxRepositoryInterface;
 use App\Repositories\Interfaces\OnlineRepositoryInterface;
-use App\Repositories\Interfaces\RequestRepositoryInterface;
-use App\Repositories\Interfaces\ThreadQuestionRepositoryInterface;
 use App\Repositories\Interfaces\ThreadRepositoryInterface;
-use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Repositories\OnlineRepository;
-use App\Repositories\RequestRepository;
-use App\Repositories\ThreadQuestionRepository;
-use App\Repositories\ThreadRepository;
-use App\Repositories\UserRepository;
-use Illuminate\Support\ServiceProvider;
+use App\Repositories\Interfaces\RequestRepositoryInterface;
+use App\Repositories\Interfaces\ChatRoomRepositoryInterface;
+use App\Repositories\Interfaces\ThreadQuestionRepositoryInterface;
+use App\Repositories\Interfaces\ChatRoomMessageRepositoryInterface;
+use App\Repositories\Interfaces\QuestionCommentRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -74,6 +76,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(
             ThreadQuestionRepositoryInterface::class,
             ThreadQuestionRepository::class
+        );
+
+        $this->app->singleton(
+            QuestionCommentRepositoryInterface::class,
+            QuestionCommentRepository::class
         );
     }
 

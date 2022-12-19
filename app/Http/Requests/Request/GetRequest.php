@@ -24,7 +24,7 @@ class GetRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => ['required', 'string', 'in:all,new'],
+            'type' => ['required', 'string', 'in:all,new', 'max:3'],
         ];
     }
 }

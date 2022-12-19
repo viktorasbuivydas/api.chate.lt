@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Thread\CreateThreadRequest;
-use App\Http\Requests\Thread\ThreadRequest;
-use App\Http\Requests\Thread\UpdateThreadRequest;
-use App\Http\Resources\ThreadResource;
 use App\Models\Thread;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ThreadResource;
+use App\Http\Requests\Thread\ThreadRequest;
+use App\Exceptions\ThreadHasNoDataException;
+use App\Http\Requests\Thread\CreateThreadRequest;
+use App\Http\Requests\Thread\UpdateThreadRequest;
 use App\Services\Interfaces\ThreadServiceInterface;
 
 class ThreadController extends Controller
@@ -22,14 +23,24 @@ class ThreadController extends Controller
 
     public function index(ThreadRequest $request)
     {
-        $threads = $this->threadService
-            ->getThreads($request->input('parent_id'));
+        $thread = $this->threadService
+            ->getThreadChildren($request->input('parent_id'));
 
-        if (! $threads) {
-            return [];
+        throw_if(! $thread, new ThreadHasNoDataException());
+
+        if ($request->has('parent_id')) {
+            return new ThreadResource($thread);
         }
 
-        return ThreadResource::collection($threads);
+        return ThreadResource::collection($thread);
+    }
+
+    public function show(Thread $thread)
+    {
+        $thread = $this->threadService
+            ->getThread($thread->id);
+
+        return new ThreadResource($thread);
     }
 
     public function store(CreateThreadRequest $request)

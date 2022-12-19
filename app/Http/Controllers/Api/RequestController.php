@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Request\CreateRequest;
-use App\Http\Requests\Request\GetRequest;
 use App\Http\Resources\RequestResource;
 use App\Models\Request as RequestModel;
+use App\Http\Requests\Request\GetRequest;
+use App\Http\Requests\Request\CreateRequest;
 use App\Services\Interfaces\RequestServiceInterface;
 
 class RequestController extends Controller

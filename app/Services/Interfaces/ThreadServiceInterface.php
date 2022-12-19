@@ -4,7 +4,9 @@ namespace App\Services\Interfaces;
 
 interface ThreadServiceInterface
 {
-    public function getThreads(?int $parentId);
+    public function getThreadChildren(?int $parentId);
+
+    public function getThread(?int $threadId);
 
     public function createThread(array $data);
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Thread\CreateThreadRequest;
-use App\Http\Requests\Thread\ThreadRequest;
-use App\Http\Requests\Thread\UpdateThreadRequest;
-use App\Http\Resources\ThreadResource;
 use App\Models\Thread;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ThreadResource;
+use App\Http\Requests\Thread\ThreadRequest;
+use App\Http\Requests\Thread\CreateThreadRequest;
+use App\Http\Requests\Thread\UpdateThreadRequest;
 use App\Services\Interfaces\ThreadServiceInterface;
 
 class TopicController extends Controller

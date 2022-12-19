@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Repositories\Interfaces\OnlineRepositoryInterface;
 use App\Services\Interfaces\OnlineServiceInterface;
+use App\Repositories\Interfaces\OnlineRepositoryInterface;
 
 class OnlineService extends BaseService implements OnlineServiceInterface
 {

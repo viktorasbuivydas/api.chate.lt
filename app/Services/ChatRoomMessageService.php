@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\DataTransfer\ChatRoomMessageData;
 use App\Events\MessageSent;
-use App\Repositories\Interfaces\ChatRoomMessageRepositoryInterface;
+use App\DataTransfer\ChatRoomMessageData;
 use App\Repositories\Interfaces\ChatRoomRepositoryInterface;
 use App\Services\Interfaces\ChatRoomMessageServiceInterface;
+use App\Repositories\Interfaces\ChatRoomMessageRepositoryInterface;
 
 class ChatRoomMessageService extends BaseService implements ChatRoomMessageServiceInterface
 {
@@ -34,7 +34,7 @@ class ChatRoomMessageService extends BaseService implements ChatRoomMessageServi
         $message = $this->chatRoomMessageRepository
             ->createOrUpdateFromArray($data);
 
-        abort_if(!$message, 400);
+        abort_if(! $message, 400);
 
         $message->load('user');
 

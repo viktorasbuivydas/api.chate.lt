@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('icon')->nullable();
-            $table->integer('position')->nullable();
+            $table->boolean('is_locked')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->softDeletes();
             $table->timestamps();

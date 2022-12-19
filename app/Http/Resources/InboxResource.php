@@ -14,7 +14,7 @@ class InboxResource extends JsonResource
             'read_at' => $this->read_at,
             'sender' => $this->sender?->username,
             'receiver' => $this->receiver?->username,
-            'created_at' => $this->created_at?->diffForHumans()
+            'created_at' => $this->created_at?->diffForHumans(),
         ];
     }
 }

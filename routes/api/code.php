@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\CodeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CodeController;
 
 Route::group([
     'middleware' => [

@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use App\Models\Inbox;
 use App\Repositories\Interfaces\InboxRepositoryInterface;
-use Carbon\Carbon;
 
 class InboxRepository extends BaseRepository implements InboxRepositoryInterface
 {

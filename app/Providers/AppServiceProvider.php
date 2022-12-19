@@ -3,26 +3,28 @@
 namespace App\Providers;
 
 use App\Services\AuthService;
-use App\Services\ChatRoomMessageService;
-use App\Services\ChatRoomService;
 use App\Services\CodeService;
+use App\Services\UserService;
 use App\Services\InboxService;
+use App\Services\OnlineService;
+use App\Services\ThreadService;
+use App\Services\RequestService;
+use App\Services\ChatRoomService;
+use App\Services\ThreadQuestionService;
+use Illuminate\Support\ServiceProvider;
+use App\Services\ChatRoomMessageService;
+use App\Services\QuestionCommentService;
 use App\Services\Interfaces\AuthServiceInterface;
-use App\Services\Interfaces\ChatRoomMessageServiceInterface;
-use App\Services\Interfaces\ChatRoomServiceInterface;
 use App\Services\Interfaces\CodeServiceInterface;
+use App\Services\Interfaces\UserServiceInterface;
 use App\Services\Interfaces\InboxServiceInterface;
 use App\Services\Interfaces\OnlineServiceInterface;
-use App\Services\Interfaces\RequestServiceInterface;
-use App\Services\Interfaces\ThreadQuestionServiceInterface;
 use App\Services\Interfaces\ThreadServiceInterface;
-use App\Services\Interfaces\UserServiceInterface;
-use App\Services\OnlineService;
-use App\Services\RequestService;
-use App\Services\ThreadQuestionService;
-use App\Services\ThreadService;
-use App\Services\UserService;
-use Illuminate\Support\ServiceProvider;
+use App\Services\Interfaces\RequestServiceInterface;
+use App\Services\Interfaces\ChatRoomServiceInterface;
+use App\Services\Interfaces\ThreadQuestionServiceInterface;
+use App\Services\Interfaces\ChatRoomMessageServiceInterface;
+use App\Services\Interfaces\QuestionCommentServiceInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -93,6 +95,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             ThreadQuestionServiceInterface::class,
             ThreadQuestionService::class
+        );
+
+        $this->app->singleton(
+            QuestionCommentServiceInterface::class,
+            QuestionCommentService::class
         );
     }
 }

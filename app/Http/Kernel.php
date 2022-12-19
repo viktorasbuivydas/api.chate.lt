@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Antispam;
 use App\Http\Middleware\ForceJson;
 use App\Http\Middleware\UpdateUserOnline;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -63,5 +64,6 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'online' => UpdateUserOnline::class,
+        'antispam' => Antispam::class,
     ];
 }

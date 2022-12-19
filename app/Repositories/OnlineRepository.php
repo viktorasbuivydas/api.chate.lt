@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use App\Models\Online;
 use App\Repositories\Interfaces\OnlineRepositoryInterface;
-use Carbon\Carbon;
 
 class OnlineRepository extends BaseRepository implements OnlineRepositoryInterface
 {

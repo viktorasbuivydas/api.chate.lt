@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\InboxController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\InboxController;
 
 Route::controller(InboxController::class)
     ->as('inbox.')

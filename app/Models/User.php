@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'email',
+        'antispam',
         'password',
     ];
 
@@ -41,6 +42,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'antispam' => 'datetime',
     ];
 
     public function messages(): HasMany

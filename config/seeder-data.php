@@ -4,18 +4,18 @@ return [
     'chat' => [
         [
             'name' => 'Bendras',
-            'is_public' => true
+            'is_public' => true,
         ],
         [
             'name' => 'Programavimas',
-            'is_public' => true
+            'is_public' => true,
         ],
     ],
     'forum' => [
         'CHATE.LT' => [
             'Pasiūlymai',
             'Klaidos',
-            'Idėjos'
+            'Idėjos',
         ],
         'PC & MOB' => [
             'Žaidimai',
@@ -25,18 +25,18 @@ return [
             'PHP',
             'Python',
             'JavaScript',
-            'CSS'
+            'CSS',
         ],
         'Darbas' => [
             'Darbo paieška',
-            'Darbo pasiūlymai'
+            'Darbo pasiūlymai',
         ],
     ],
     'tutorials' => [
         'PHP',
         'Python',
         'JavaScript',
-        'CSS'
+        'CSS',
     ],
     'files' => [
         'PC',
@@ -51,7 +51,7 @@ return [
         'UI Komponentai' => [
             'Tailwind CSS',
             'Bootstrap',
-            'CSS'
-        ]
-    ]
+            'CSS',
+        ],
+    ],
 ];

@@ -1,9 +1,8 @@
 <?php
 
-use App\Events\MessageSent;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ChatRoomController;
 use App\Http\Controllers\Api\ChatRoomMessageController;
-use Illuminate\Support\Facades\Route;
 
 Route::controller(ChatRoomController::class)
     ->as('chat.')

@@ -12,7 +12,11 @@ class ThreadQuestionResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'content' => $this->content,
-            'children_count' => $this->whenCounted('children'),
+            'comments' => $this->whenCounted('comments'),
+            'thread' => $this->whenLoaded('thread', function () {
+                return new ThreadResource($this->thread);
+            }),
+
         ];
     }
 }

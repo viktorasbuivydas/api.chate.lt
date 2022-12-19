@@ -24,7 +24,7 @@ class CreateChatMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => ['required', 'string'],
+            'content' => ['required', 'string', 'max:500'],
         ];
     }
 }

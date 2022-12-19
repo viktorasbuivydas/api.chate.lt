@@ -12,6 +12,8 @@ interface UserRepositoryInterface
 
     public function getUserData(int $userId);
 
+    public function update(int $userId, array $data);
+
     public function getUserByField(string $column, string $field);
 
     public function checkUserPassword(string $hashedPassword, int $userId);

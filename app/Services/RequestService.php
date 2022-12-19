@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Exceptions\Request\RequestNotFoundException;
-use App\Repositories\Interfaces\RequestRepositoryInterface;
-use App\Services\Interfaces\CodeServiceInterface;
-use App\Services\Interfaces\RequestServiceInterface;
 use App\Traits\Response;
+use App\Services\Interfaces\CodeServiceInterface;
+use App\Exceptions\Request\RequestNotFoundException;
+use App\Services\Interfaces\RequestServiceInterface;
+use App\Repositories\Interfaces\RequestRepositoryInterface;
 
 class RequestService extends BaseService implements RequestServiceInterface
 {

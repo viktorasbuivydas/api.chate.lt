@@ -24,7 +24,7 @@ class InboxTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => ['required', 'string', 'in:all,sent'],
+            'type' => ['required', 'string', 'in:all,sent', 'max:10'],
         ];
     }
 }
