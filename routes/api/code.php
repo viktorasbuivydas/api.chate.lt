@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CodeController;
+use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => [
@@ -10,5 +10,6 @@ Route::group([
     ],
 ], function () {
     Route::post('/codes/store', [CodeController::class, 'store'])
-        ->name('codes.store');
+        ->name('codes.store')
+        ->middleware('antispam');
 });

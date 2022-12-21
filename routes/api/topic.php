@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ThreadController;
+use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => [
@@ -13,7 +13,8 @@ Route::group([
     Route::get('/topics/{topic}', [ThreadController::class, 'show'])
         ->name('topics.show');
     Route::post('/topics/{topic}/store', [ThreadController::class, 'store'])
-        ->name('topics.store');
+        ->name('topics.store')
+        ->middleware('antispam');
     Route::get('/topics/{thread}/update', [ThreadController::class, 'update'])
         ->name('topics.update');
 });

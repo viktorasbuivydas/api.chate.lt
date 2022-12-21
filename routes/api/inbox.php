@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\InboxController;
+use Illuminate\Support\Facades\Route;
 
 Route::controller(InboxController::class)
     ->as('inbox.')
@@ -18,5 +18,6 @@ Route::controller(InboxController::class)
         Route::get('{messageId}', 'getMessage')
             ->name('get-message');
         Route::post('store', 'sendMessage')
-            ->name('send-message');
+            ->name('send-message')
+            ->middleware('antispam');
     });

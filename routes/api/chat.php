@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ChatRoomController;
 use App\Http\Controllers\Api\ChatRoomMessageController;
+use Illuminate\Support\Facades\Route;
 
 Route::controller(ChatRoomController::class)
     ->as('chat.')
@@ -35,5 +35,6 @@ Route::controller(ChatRoomMessageController::class)
         Route::get('/chat/{chat}/skip', 'getChatRoomMessageSkip')
             ->name('get-chat-room-messages-count');
         Route::post('/chat/{chat}/store', 'createChatRoomMessage')
-            ->name('create-chat-room-message');
+            ->name('create-chat-room-message')
+            ->middleware('antispam');
     });

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::controller(UserController::class)
     ->as('user.')
@@ -18,6 +18,7 @@ Route::controller(UserController::class)
 
         Route::group(['prefix' => 'user'], function () {
             Route::patch('password', 'changePassword')
-                ->name('password');
+                ->name('password')
+                ->middleware('antispam');
         });
     });
