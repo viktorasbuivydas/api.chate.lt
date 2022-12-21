@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
-use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +18,6 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return true;
 });
 
-Broadcast::channel('chat.{chatId}', function ($user, $chatId) {
+Broadcast::channel('presence.chat.{chatId}', function ($user) {
     return $user;
 });

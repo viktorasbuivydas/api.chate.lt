@@ -33,14 +33,14 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('chat.' . $this->message->chatRoomId);
+        return new PresenceChannel('presence.chat.'.$this->message->chatRoomId);
     }
 
     public function broadCastWith()
     {
         return [
             'message' => $this->message,
-            'user' => $this->user->only(['username'])
+            'user' => $this->user->only(['username']),
         ];
     }
 }
