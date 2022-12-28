@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Observers\ThreadQuestionObserver;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ThreadQuestion extends Model
 {
@@ -26,5 +27,11 @@ class ThreadQuestion extends Model
     public function thread()
     {
         return $this->hasOne(Thread::class, 'id', 'thread_id');
+    }
+
+    public static function boot(): void
+    {
+        parent::boot();
+        ThreadQuestion::observe(ThreadQuestionObserver::class);
     }
 }

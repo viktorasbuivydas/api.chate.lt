@@ -13,6 +13,7 @@ class ThreadQuestionRepository extends BaseRepository implements ThreadQuestionR
     {
         return $this->getModelInstance()
             ->where('thread_id', $threadId)
+            ->latest()
             ->get();
     }
 
