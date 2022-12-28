@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Repositories\Interfaces\ChatRoomRepositoryInterface;
 use App\Services\Interfaces\ChatRoomServiceInterface;
+use App\Repositories\Interfaces\ChatRoomRepositoryInterface;
 
 class ChatRoomService extends BaseService implements ChatRoomServiceInterface
 {

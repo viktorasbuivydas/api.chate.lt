@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Interfaces;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 
 interface BaseRepositoryInterface
 {

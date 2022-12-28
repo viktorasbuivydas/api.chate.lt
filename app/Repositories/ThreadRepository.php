@@ -9,11 +9,30 @@ class ThreadRepository extends BaseRepository implements ThreadRepositoryInterfa
 {
     public $model = Thread::class;
 
+    public function getThread(?int $threadId)
+    {
+        return $this->getModelInstance()
+            ->withCount('children')
+            ->withWhereHas('children', fn ($q) => $q
+                ->withCount('questions')
+                ->where('parent_id', $threadId))
+            ->first();
+    }
+
     public function getThreads(?int $threadId)
     {
         return $this->getModelInstance()
             ->withCount('children')
-            ->whereParentId($threadId)
+            ->withCount('questions')
+            ->where('parent_id', $threadId)
             ->get();
+    }
+
+    public function getParent(int $threadId)
+    {
+        return $this->getModelInstance()
+            ->with('parent')
+            ->where('id', $threadId)
+            ->first();
     }
 }

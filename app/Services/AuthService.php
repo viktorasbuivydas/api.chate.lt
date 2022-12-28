@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Services\Interfaces\AuthServiceInterface;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Services\Interfaces\AuthServiceInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 
 class AuthService extends BaseService implements AuthServiceInterface
 {
@@ -57,6 +57,16 @@ class AuthService extends BaseService implements AuthServiceInterface
         return response()->json([
             'status' => true,
             'token' => $user->createToken('API TOKEN')->plainTextToken,
+        ], 200);
+    }
+
+    public function logout(): JsonResponse
+    {
+        request()->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Logged Out Successfully',
         ], 200);
     }
 }

@@ -34,14 +34,14 @@ class ChatRoomMessageService extends BaseService implements ChatRoomMessageServi
         $message = $this->chatRoomMessageRepository
             ->createOrUpdateFromArray($data);
 
-        abort_if(!$message, 400);
+        abort_if(! $message, 400);
 
         $message->load('user');
 
-        broadcast(new MessageSent(
-            ChatRoomMessageData::fromModel($message)
-        ));
+        $messageData = ChatRoomMessageData::fromModel($message);
 
-        return ChatRoomMessageData::fromModel($message);
+        broadcast(new MessageSent($messageData));
+
+        return $messageData;
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Interfaces\BaseRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\Repositories\Interfaces\BaseRepositoryInterface;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {

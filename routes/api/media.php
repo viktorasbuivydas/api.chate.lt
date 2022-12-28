@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\ChatRoomMessageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ChatRoomMessageController;
 
 Route::group([
     'middleware' => [

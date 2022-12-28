@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Mail\RequestApproved;
-use App\Repositories\Interfaces\CodeRepositoryInterface;
-use App\Services\Interfaces\CodeServiceInterface;
 use App\Traits\Response;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Mail\RequestApproved;
+use Illuminate\Support\Facades\Mail;
+use App\Services\Interfaces\CodeServiceInterface;
+use App\Repositories\Interfaces\CodeRepositoryInterface;
 
 class CodeService extends BaseService implements CodeServiceInterface
 {

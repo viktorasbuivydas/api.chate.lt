@@ -54,6 +54,13 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             ->first();
     }
 
+    public function update(int $userId, array $data)
+    {
+        return $this->getModelInstance()
+            ->where('id', $userId)
+            ->update($data);
+    }
+
     public function checkUserPassword(string $hashedPassword, int $userId)
     {
         return $this->getModelInstance()

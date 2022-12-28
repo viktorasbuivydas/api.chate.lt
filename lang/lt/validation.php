@@ -108,7 +108,7 @@ return [
     'attributes' => [
         'password' => 'slaptažodis',
         'new_password' => 'naujas slaptažodis',
-        'new_confirm_password' => 'kartojamas slaptažodis'
+        'new_confirm_password' => 'kartojamas slaptažodis',
     ],
 
 ];

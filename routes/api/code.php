@@ -10,5 +10,6 @@ Route::group([
     ],
 ], function () {
     Route::post('/codes/store', [CodeController::class, 'store'])
-        ->name('codes.store');
+        ->name('codes.store')
+        ->middleware('antispam');
 });

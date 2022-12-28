@@ -4,39 +4,72 @@ return [
     'chat' => [
         [
             'name' => 'Bendras',
-            'is_public' => true
+            'is_public' => true,
         ],
         [
             'name' => 'Programavimas',
-            'is_public' => true
+            'is_public' => true,
         ],
     ],
     'forum' => [
         'CHATE.LT' => [
-            'Pasiūlymai',
-            'Klaidos',
-            'Idėjos'
+            [
+                'name' => 'Pasiūlymai',
+                'icon' => 'assistant',
+            ],
+            [
+                'name' => 'Klaidos',
+                'icon' => 'report',
+            ],
+            [
+                'name' => 'Idėjos',
+                'icon' => 'psychology_alt',
+            ],
         ],
         'PC & MOB' => [
-            'Žaidimai',
-            'Programos',
+            [
+                'name' => 'Žaidimai',
+                'icon' => 'sports_esports',
+            ],
+            [
+                'name' => 'Programos',
+                'icon' => 'terminal',
+            ],
         ],
         'Programavimas' => [
-            'PHP',
-            'Python',
-            'JavaScript',
-            'CSS'
+            [
+                'name' => 'PHP',
+                'icon' => 'php',
+            ],
+            [
+                'name' => 'Python',
+                'icon' => 'code',
+            ],
+            [
+                'name' => 'JavaScript',
+                'icon' => 'javascript',
+            ],
+            [
+                'name' => 'CSS',
+                'icon' => 'css',
+            ],
         ],
         'Darbas' => [
-            'Darbo paieška',
-            'Darbo pasiūlymai'
+            [
+                'name' => 'Darbo paieška',
+                'icon' => 'work_history',
+            ],
+            [
+                'name' => 'Darbo pasiūlymai',
+                'icon' => 'work',
+            ],
         ],
     ],
     'tutorials' => [
         'PHP',
         'Python',
         'JavaScript',
-        'CSS'
+        'CSS',
     ],
     'files' => [
         'PC',
@@ -51,7 +84,7 @@ return [
         'UI Komponentai' => [
             'Tailwind CSS',
             'Bootstrap',
-            'CSS'
-        ]
-    ]
+            'CSS',
+        ],
+    ],
 ];

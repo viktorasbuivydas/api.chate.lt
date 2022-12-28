@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Observers\ChatRoomMessageObserver;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Observers\ChatRoomMessageObserver;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ChatRoomMessage extends Model
 {

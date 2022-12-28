@@ -24,7 +24,7 @@ class CreateCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email', 'unique:codes,email'],
+            'email' => ['required', 'email', 'unique:codes,email', 'max:255'],
         ];
     }
 }

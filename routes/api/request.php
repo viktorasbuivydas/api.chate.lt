@@ -8,16 +8,11 @@ Route::controller(RequestController::class)
     ->middleware([
         'auth:sanctum',
         'online',
+        'antispam',
     ])
     ->group(function () {
-        Route::get('/requests/index', 'index')
-            ->name('index');
-
         Route::post('/requests/store', 'store')
             ->name('store');
-
-        Route::post('/requests/{request}/approve', 'approve')
-            ->name('approve');
 
         Route::delete('/requests/{request}/delete', 'delete')
             ->name('delete');

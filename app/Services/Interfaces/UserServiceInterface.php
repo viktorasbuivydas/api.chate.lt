@@ -15,4 +15,6 @@ interface UserServiceInterface
     public function getNewMessages(int $userId);
 
     public function getSentMessages(int $userId);
+
+    public function updateAntispam(int $userId);
 }

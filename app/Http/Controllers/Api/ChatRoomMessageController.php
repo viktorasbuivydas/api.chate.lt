@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Chat\CreateChatMessageRequest;
-use App\Models\ChatRoom;
-use App\Services\Interfaces\ChatRoomMessageServiceInterface;
-use Illuminate\Http\Request as HttpRequest;
 use Storage;
+use App\Models\ChatRoom;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request as HttpRequest;
+use App\Http\Requests\Chat\CreateChatMessageRequest;
+use App\Services\Interfaces\ChatRoomMessageServiceInterface;
 
 class ChatRoomMessageController extends Controller
 {
@@ -41,7 +41,7 @@ class ChatRoomMessageController extends Controller
             'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
-        $imageName = time() . '.' . $request->image->extension();
+        $imageName = time().'.'.$request->image->extension();
 
         // Public Folder
         // $request->image->move(public_path('images'), $imageName);

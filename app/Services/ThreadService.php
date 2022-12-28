@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Repositories\Interfaces\ThreadRepositoryInterface;
 use App\Services\Interfaces\ThreadServiceInterface;
+use App\Repositories\Interfaces\ThreadRepositoryInterface;
 
 class ThreadService extends BaseService implements ThreadServiceInterface
 {
@@ -15,12 +15,25 @@ class ThreadService extends BaseService implements ThreadServiceInterface
         $this->threadRepository = $threadRepository;
     }
 
-    public function getThreads(?int $parentId)
+    public function getThreadChildren(?int $parentId)
     {
-        $threads = $this->threadRepository
-            ->getThreads($parentId);
+        if ($parentId) {
+            $threads = $this->threadRepository
+                ->getThread($parentId);
+        } else {
+            $threads = $this->threadRepository
+                ->getThreads($parentId);
+        }
 
         return $threads;
+    }
+
+    public function getThread(?int $threadId)
+    {
+        $thread = $this->threadRepository
+            ->getParent($threadId);
+
+        return $thread;
     }
 
     public function createThread(array $data)

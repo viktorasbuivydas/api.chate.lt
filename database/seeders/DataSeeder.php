@@ -26,15 +26,19 @@ class DataSeeder extends Seeder
     {
         $data = collect(config('seeder-data'));
         $forum = Arr::get($data, 'forum');
-        $threads = collect($forum)->keys();
-        $threads->map(function ($thread, $key) use ($forum) {
+
+        $threads = collect($forum);
+
+        $threads->keys()->map(function ($thread) use ($forum) {
             $parent = Thread::create([
                 'name' => $thread,
+                'icon' => 'forum',
             ]);
 
-            collect($forum[$thread])->map(function ($item) use ($parent) {
+            collect($forum[$thread])->map(function ($thread) use ($parent) {
                 Thread::create([
-                    'name' => $item,
+                    'name' => Arr::get($thread, 'name'),
+                    'icon' => Arr::get($thread, 'icon'),
                     'parent_id' => $parent->id,
                 ]);
             });

@@ -18,6 +18,7 @@ Route::controller(UserController::class)
 
         Route::group(['prefix' => 'user'], function () {
             Route::patch('password', 'changePassword')
-                ->name('password');
+                ->name('password')
+                ->middleware('antispam');
         });
     });

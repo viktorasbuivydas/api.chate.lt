@@ -24,7 +24,7 @@ class CreateChatRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:chat_rooms,name', 'string'],
+            'name' => ['required', 'unique:chat_rooms,name', 'string', 'max:255'],
             'is_public' => ['required', 'boolean'],
         ];
     }
